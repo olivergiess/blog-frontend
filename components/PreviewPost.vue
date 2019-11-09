@@ -1,7 +1,7 @@
 <template>
   <v-hover v-slot:default="{ hover }" open-delay="30" close-delay="30">
     <v-card flat tile color="transparent" :nuxt-link="true" :to="url">
-      <v-img :class="{ 'on-hover' : hover }" :src="post.cover_image" height="25vh">
+      <v-img :class="{ 'on-hover' : hover }" :src="post.coverImage" height="28vh">
         <v-fade-transition>
           <div v-if="hover" class="d-flex transition-slow-in-fast-out darken-2 v-card--reveal headline white--text">
             Read
@@ -12,9 +12,9 @@
         {{ post.title }}
       </v-card-title>
       <v-card-text class="pl-0 overline text-uppercase">
-        By: <strong>{{ post.user.full_name }}</strong>&nbsp;&nbsp;/&nbsp;&nbsp;
+        By: <strong>{{ author }}</strong>&nbsp;&nbsp;/&nbsp;&nbsp;
         <span class="light-green--text text--darken--5">
-          {{ post.formatted_publish_at }}
+          {{ formattedPublishAt }}
         </span>
       </v-card-text>
     </v-card>
@@ -22,21 +22,26 @@
 </template>
 
 <script>
-import User from '@/models/User'
-import Post from '@/models/Post'
+import moment from 'moment'
 
 export default {
   props: {
     user: {
-      type: User,
-      default: () => new User()
+      type: Object,
+      default: () => {}
     },
     post: {
-      type: Post,
-      default: () => new Post()
+      type: Object,
+      default: () => {}
     }
   },
   computed: {
+    author () {
+      return `${this.user.firstName} ${this.user.lastName}`
+    },
+    formattedPublishAt () {
+      return moment(this.post.publishAt).format('Do MMM YYYY')
+    },
     url () {
       return `/${this.user.slug}/posts/${this.post.id}`
     }

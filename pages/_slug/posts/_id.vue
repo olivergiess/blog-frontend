@@ -1,8 +1,6 @@
 <template>
   <div>
-    <NavBar />
-
-    <Banner />
+    <ImageBanner :image-src="post.coverImage" />
 
     <Avatar />
 
@@ -17,10 +15,10 @@
       <v-row align="start" justify="center">
         <v-col cols="auto">
           <h3 class="overline text-uppercase grey--text">
-            PUBLISHED /
+            PUBLISHED / {{ formattedPublishAt }}
           </h3>
           <h3 class="overline text-uppercase grey--text">
-            EDITED &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/
+            EDITED &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ {{ formattedUpdatedAt }}
           </h3>
         </v-col>
       </v-row>
@@ -34,18 +32,40 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar'
+import { mapGetters } from 'vuex'
+import moment from 'moment'
+
+import ImageBanner from '@/components/ImageBanner'
 import Avatar from '@/components/Avatar'
-import Banner from '@/components/ImageBanner'
 import DisplayPost from '@/components/DisplayPost'
 
 export default {
   auth: false,
   components: {
-    NavBar,
+    ImageBanner,
     Avatar,
-    Banner,
     DisplayPost
+  },
+  computed: {
+    ...mapGetters({
+      getPost: 'posts/show'
+    }),
+    post () {
+      const id = this.$route.params.id
+
+      return this.getPost(id)
+    },
+    formattedPublishAt () {
+      return moment(this.post.publishAt).format('Do MMM YYYY')
+    },
+    formattedUpdatedAt () {
+      return moment(this.post.updatedAt).format('Do MMM YYYY')
+    }
+  },
+  async fetch ({ route, store }) {
+    const slug = route.params.slug
+
+    await store.dispatch('user/updateBySlug', slug)
   }
 }
 </script>

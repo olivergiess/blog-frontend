@@ -1,36 +1,15 @@
 <template>
-  <v-app-bar
-    app
-    fixed
-    :elevate-on-scroll="true"
-  >
-    <v-container
-      fill-height
-    >
-      <v-row
-        no-gutters
-        justify="center"
-        align="center"
-      >
-        <v-col
-          cols="11"
-          lg="9"
-        >
-          <v-toolbar
-            flat
-          >
-            <v-toolbar-title v-text="name" />
+  <v-app-bar app fixed :elevate-on-scroll="true">
+    <v-container>
+      <v-row no-gutters justify="center" align="center">
+        <v-col cols="11" lg="9">
+          <v-toolbar flat>
+            <v-toolbar-title v-text="user.firstName" />
 
             <div class="flex-grow-1" />
 
             <v-toolbar-items>
-              <v-btn
-                v-for="(item, i) in items"
-                :key="i"
-                :to="item.to"
-                exact
-                text
-              >
+              <v-btn v-for="(item, i) in items" :key="i" :to="item.to" exact text>
                 {{ item.title }}
               </v-btn>
             </v-toolbar-items>
@@ -42,18 +21,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  props: {
-    name: {
-      type: String,
-      default: ''
-    },
-    slug: {
-      type: String,
-      default: ''
-    }
-  },
   computed: {
+    ...mapGetters({
+      user: 'user/show'
+    }),
     items () {
       const items = [
         {
@@ -62,10 +36,10 @@ export default {
         }
       ]
 
-      if (this.slug) {
+      if (this.user.slug) {
         items.push({
           title: 'Blog',
-          to: '/' + this.slug
+          to: `/${this.user.slug}/page/1`
         })
       }
 
