@@ -8,8 +8,12 @@
 
     <v-container>
       <v-row align="start" justify="center">
-        <v-col v-for="post in posts" :key="post.id" cols="12" md="6">
-          <PreviewPost :user="user" :post="post" />
+        <v-col cols="10">
+          <v-row align="start" justify="center">
+            <v-col v-for="post in posts" :key="post.id" cols="12" md="5">
+              <PreviewPost :user="user" :post="post" />
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
@@ -53,10 +57,11 @@ export default {
       page: Number(route.params.page)
     }
   },
-  async fetch ({ route, store }) {
+  async fetch ({ route, store, error }) {
     const slug = route.params.slug
 
     await store.dispatch('user/updateBySlug', slug)
+      .catch(e => error({ statusCode: e.response.status }))
   }
 }
 </script>

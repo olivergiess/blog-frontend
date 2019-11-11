@@ -52,7 +52,7 @@ export default {
   */
   axios: {
     prefix: '/api/',
-    host: 'cms-backend.test',
+    host: 'blog-backend.test',
     port: 80
   },
   /*

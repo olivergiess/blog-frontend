@@ -29,12 +29,12 @@ export const mutations = {
 }
 
 export const actions = {
-  async updateBySlug ({ getters, commit, dispatch }, slug) {
+  updateBySlug ({ getters, commit, dispatch }, slug) {
     if (slug === getters.show.slug) {
       return
     }
 
-    await this.$axios.get(`/users/${slug}?expand=published`)
+    return this.$axios.get(`/users/${slug}?expand=published`)
       .then((response) => {
         const user = response.data.data
 

@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="pt-0 pr-0 pl-0">
-    <v-img :src="imageSrc" height="30vh" style="opacity: 0.8;" />
+    <v-img :src="imageSrc" height="28vh" class="banner" />
   </v-container>
 </template>
 
@@ -14,3 +14,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .banner {
+    opacity: 0.8;
+  }
+</style>
