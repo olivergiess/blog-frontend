@@ -1,8 +1,8 @@
 <template>
-  <v-app-bar app fixed :elevate-on-scroll="true">
+  <v-app-bar app fixed elevation="4">
     <v-container>
       <v-row no-gutters justify="center" align="center">
-        <v-col cols="11" lg="9">
+        <v-col cols="12" lg="8">
           <v-toolbar flat>
             <v-toolbar-title v-text="user.firstName" />
 

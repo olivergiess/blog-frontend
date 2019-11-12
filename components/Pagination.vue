@@ -1,21 +1,17 @@
 <template>
-  <v-container>
-    <v-row align="center" justify="center">
-      <v-col cols="auto">
-        <v-btn class="ma-2" tile text :disabled="isFirst" @click="updatePageNumber(previous)">
-          <v-icon>
-            mdi-menu-left
-          </v-icon>
-        </v-btn>
-        {{ value }} / {{ length }}
-        <v-btn class="ma-2" tile text :disabled="isLast" @click="updatePageNumber(next)">
-          <v-icon>
-            mdi-menu-right
-          </v-icon>
-        </v-btn>
-      </v-col>
-    </v-row>
-  </v-container>
+  <div>
+    <v-btn class="ma-2" tile text :disabled="isFirst" @click="updatePageNumber(previous)">
+      <v-icon>
+        mdi-menu-left
+      </v-icon>
+    </v-btn>
+    {{ value }} / {{ length }}
+    <v-btn class="ma-2" tile text :disabled="isLast" @click="updatePageNumber(next)">
+      <v-icon>
+        mdi-menu-right
+      </v-icon>
+    </v-btn>
+  </div>
 </template>
 
 <script>

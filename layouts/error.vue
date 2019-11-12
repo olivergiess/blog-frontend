@@ -1,7 +1,5 @@
 <template>
   <v-app>
-    <GradientBanner class="pl-0 pt-0 pr-0" />
-
     <v-container>
       <v-row align="start" justify="center">
         <v-col cols="auto">
@@ -25,13 +23,8 @@
 </template>
 
 <script>
-import GradientBanner from '../components/GradientBanner'
-
 export default {
   layout: 'empty',
-  components: {
-    GradientBanner
-  },
   props: {
     error: {
       type: Object,

@@ -1,39 +1,50 @@
 <template>
   <div>
-    <ImageBanner image-src="http://www.schintudesign.com/envato/exodus/assets/img/backs/back03.jpg" />
-
-    <Header />
-
-    <Pagination v-model="page" :length="pages" />
-
     <v-container>
-      <v-row align="start" justify="center">
-        <v-col cols="10">
-          <v-row align="start" justify="center">
-            <v-col v-for="post in posts" :key="post.id" cols="12" md="5">
+      <v-row no-gutters align="start" justify="center">
+        <v-col cols="12" lg="8">
+          <v-container>
+            <v-row align="center" justify="left">
+              <v-col cols="auto">
+                <h1 class="display-2">
+                  Articles
+                </h1>
+              </v-col>
+            </v-row>
+            <v-row no-gutters align="center" justify="left">
+              <v-col cols="auto">
+                <h2 class="subtitle-1">
+                  Latest from the Blog
+                </h2>
+              </v-col>
+            </v-row>
+          </v-container>
+
+          <v-row align="start" justify="left">
+            <v-col v-for="post in posts" :key="post.id" cols="12" lg="6">
               <PreviewPost :user="user" :post="post" />
             </v-col>
           </v-row>
         </v-col>
       </v-row>
-    </v-container>
 
-    <Pagination v-model="page" :length="pages" />
+      <v-row align="center" justify="center">
+        <v-col cols="auto">
+          <Pagination v-model="page" :length="pages"/>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 
-import ImageBanner from '@/components/ImageBanner'
-import Header from '@/components/Header'
 import PreviewPost from '@/components/PreviewPost'
 import Pagination from '@/components/Pagination'
 
 export default {
   components: {
-    ImageBanner,
-    Header,
     PreviewPost,
     Pagination
   },

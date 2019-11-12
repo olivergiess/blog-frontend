@@ -1,24 +1,26 @@
 <template>
-  <v-hover v-slot:default="{ hover }" open-delay="30" close-delay="30">
-    <v-card flat tile color="transparent" :nuxt-link="true" :to="url">
-      <v-img :class="{ 'on-hover' : hover }" :src="post.coverImage" height="28vh">
-        <v-fade-transition>
-          <div v-if="hover" class="d-flex transition-slow-in-fast-out darken-2 v-card--reveal headline white--text">
-            Read
-          </div>
-        </v-fade-transition>
-      </v-img>
-      <v-card-title class="pl-0 title">
-        {{ post.title }}
-      </v-card-title>
-      <v-card-text class="pl-0 overline text-uppercase">
-        By: <strong>{{ author }}</strong>&nbsp;&nbsp;/&nbsp;&nbsp;
-        <span class="light-green--text text--darken--5">
-          {{ formattedPublishAt }}
-        </span>
-      </v-card-text>
-    </v-card>
-  </v-hover>
+  <v-card
+    :hover="true"
+    nuxt-link="true"
+    :to="url"
+  >
+    <v-img :src="post.coverImage" height="25vh">
+      <template v-slot:placeholder>
+        <v-row class="fill-height ma-0" align="center" justify="center" color="grey">
+          <v-progress-circular indeterminate color="grey lighten-2"></v-progress-circular>
+        </v-row>
+      </template>
+    </v-img>
+    <v-card-title>
+      {{ post.title }}
+    </v-card-title>
+    <v-card-subtitle>
+      By <strong>{{ author }}</strong>&nbsp;&nbsp;/&nbsp;
+      <span>
+        {{ formattedPublishAt }}
+      </span>
+    </v-card-subtitle>
+  </v-card>
 </template>
 
 <script>
@@ -48,18 +50,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .on-hover {
-    opacity: 0.5;
-  }
-
-  .v-card--reveal {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-  }
-</style>
