@@ -1,5 +1,3 @@
-import { ADD, RESET } from '@/store/resource-mutations'
-
 const ITEMS_PER_PAGE = 10
 
 // eslint-disable-next-line camelcase
@@ -15,10 +13,10 @@ const formatPost = ({ id, cover_image: coverImage, title, body, publish_at: publ
 export const state = () => ([])
 
 export const mutations = {
-  [ADD] (state, post) {
+  add (state, post) {
     state.push(formatPost(post))
   },
-  [RESET] (state) {
+  reset (state) {
     state = []
   }
 }
@@ -26,20 +24,20 @@ export const mutations = {
 export const actions = {
   insert ({ commit }, posts) {
     if (Array.isArray(posts)) {
-      posts.forEach(post => commit(ADD, post))
+      posts.forEach(post => commit('add', post))
 
       return
     }
 
-    commit(ADD, posts)
+    commit('add', posts)
   },
   deleteAll ({ commit }) {
-    commit(RESET)
+    commit('reset')
   }
 }
 
 export const getters = {
-  show (state) {
+  get (state) {
     // eslint-disable-next-line eqeqeq
     return id => state.find(ele => ele.id == id)
   },
@@ -48,10 +46,6 @@ export const getters = {
   },
   getPage (state) {
     return (page) => {
-      // if (page < 0 || page > this.totalPages()) {
-      //   this.error()
-      // }
-
       page = (page - 1) * ITEMS_PER_PAGE
 
       return state.slice(page, page + ITEMS_PER_PAGE)

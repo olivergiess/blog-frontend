@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import moment from 'moment'
+import { validatePositiveInteger } from '@/helpers/Validation'
 
 import ImageBanner from '@/components/ImageBanner'
 import Avatar from '@/components/Avatar'
@@ -47,13 +47,10 @@ export default {
     DisplayPost
   },
   computed: {
-    ...mapGetters({
-      getPost: 'posts/show'
-    }),
     post () {
       const id = this.$route.params.id
 
-      return this.getPost(id)
+      return this.$store.getters['posts/get'](id)
     },
     formattedPublishAt () {
       return moment(this.post.publishAt).format('Do MMM YYYY')
@@ -62,10 +59,27 @@ export default {
       return moment(this.post.updatedAt).format('Do MMM YYYY')
     }
   },
-  async fetch ({ route, store }) {
-    const slug = route.params.slug
+  validate ({ params }) {
+    const id = Number(params.id)
 
-    await store.dispatch('user/updateBySlug', slug)
+    return validatePositiveInteger(id)
+  },
+  async fetch ({ params, store, error }) {
+    const slug = params.slug
+
+    try {
+      await store.dispatch('user/updateBySlug', slug)
+    } catch (e) {
+      error({ statusCode: e.response.status })
+    }
+
+    const id = params.id
+
+    const post = store.getters['posts/get'](id)
+
+    if (post === undefined) {
+      error({ statusCode: 404 })
+    }
   }
 }
 </script>

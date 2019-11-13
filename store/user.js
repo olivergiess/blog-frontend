@@ -1,4 +1,4 @@
-import { ADD, RESET } from '@/store/resource-mutations'
+import { getBlogBySlug } from '@/api/calls'
 
 export const state = () => ({
   id: null,
@@ -7,20 +7,14 @@ export const state = () => ({
   lastName: ''
 })
 
-export const getters = {
-  show (state) {
-    return state
-  }
-}
-
 export const mutations = {
-  [ADD] (state, user) {
+  add (state, user) {
     state.id = user.id
     state.slug = user.slug
     state.firstName = user.first_name
     state.lastName = user.last_name
   },
-  [RESET] (state) {
+  reset (state) {
     state.id = null
     state.slug = ''
     state.firstName = ''
@@ -30,19 +24,25 @@ export const mutations = {
 
 export const actions = {
   updateBySlug ({ getters, commit, dispatch }, slug) {
-    if (slug === getters.show.slug) {
+    if (slug === getters.get.slug) {
       return
     }
 
-    return this.$axios.get(`/users/${slug}?expand=published`)
-      .then((response) => {
-        const user = response.data.data
+    return getBlogBySlug(slug)
+      .then((result) => {
+        const user = result.data
 
-        commit(ADD, user)
+        const posts = result.data.relationships.posts.data
 
-        const posts = user.relationships.posts.data
+        commit('add', user)
 
         dispatch('posts/insert', posts, { root: true })
       })
+  }
+}
+
+export const getters = {
+  get (state) {
+    return state
   }
 }

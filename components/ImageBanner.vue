@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="pa-0 mb-3">
-    <v-img :src="imageSrc" height="28vh" />
+    <v-img :src="imageSrc" height="30rem" />
   </v-container>
 </template>
 

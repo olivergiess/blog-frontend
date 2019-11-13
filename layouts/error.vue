@@ -1,25 +1,18 @@
 <template>
-  <v-app>
-    <v-container>
-      <v-row align="start" justify="center">
-        <v-col cols="auto">
-          <v-icon x-large>
-            mdi-magnify
-          </v-icon>
-        </v-col>
-      </v-row>
-      <v-row align="start" justify="center">
-        <v-col cols="auto">
-          <p v-if="error.statusCode === 404" class="display-1 font-weight-light">
-            {{ pageNotFound }}
-          </p>
-          <p v-else class="display-1 font-weight-light">
-            {{ otherError }}
-          </p>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-app>
+  <v-container fill-height>
+    <v-row align="center" justify="center">
+      <v-col cols="10" md="3">
+        <v-card flat tile>
+          <v-card-title>
+            {{ getError(error.statusCode).title }}
+          </v-card-title>
+          <v-card-text>
+            {{ getError(error.statusCode).message }}
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -32,16 +25,33 @@ export default {
     }
   },
   head () {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
+    const title = this.getError(this.error.statusCode).title
+
     return {
       title
     }
   },
   data () {
     return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
+      errors: {
+        404: {
+          title: '404 Not Found',
+          message: 'We couldn\'t find what you were looking for.'
+        },
+        default: {
+          title: 'An error occurred',
+          message: 'Something is not right!'
+        }
+      }
+    }
+  },
+  methods: {
+    getError (statusCode) {
+      if (statusCode in this.errors) {
+        return this.errors[statusCode]
+      }
+
+      return this.errors.default
     }
   }
 }
