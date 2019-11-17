@@ -30,9 +30,6 @@ export const actions = {
     }
 
     commit('add', posts)
-  },
-  deleteAll ({ commit }) {
-    commit('reset')
   }
 }
 

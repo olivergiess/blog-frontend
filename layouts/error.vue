@@ -2,7 +2,7 @@
   <v-container fill-height>
     <v-row align="center" justify="center">
       <v-col cols="10" md="3">
-        <v-card flat tile>
+        <v-card tile>
           <v-card-title>
             {{ getError(error.statusCode).title }}
           </v-card-title>

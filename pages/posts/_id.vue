@@ -64,15 +64,10 @@ export default {
 
     return validatePositiveInteger(id)
   },
-  async fetch ({ params, store, error }) {
-    const slug = params.slug
-
-    try {
-      await store.dispatch('user/updateBySlug', slug)
-    } catch (e) {
-      error({ statusCode: e.response.status })
-    }
-
+  middleware: [
+    'processSubdomain'
+  ],
+  fetch ({ params, store, error }) {
     const id = params.id
 
     const post = store.getters['posts/get'](id)

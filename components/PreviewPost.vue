@@ -26,7 +26,6 @@
 
     <v-card-actions>
       <v-row no-gutters>
-<!--        <v-spacer />-->
         <v-btn text rounded color="amber accent-4">
           READ MORE
         </v-btn>
@@ -57,7 +56,7 @@ export default {
       return moment(this.post.publishAt).format('Do MMM YYYY')
     },
     url () {
-      return `/${this.user.slug}/posts/${this.post.id}`
+      return `/posts/${this.post.id}`
     }
   },
   methods: {

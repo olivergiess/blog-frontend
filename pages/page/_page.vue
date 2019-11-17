@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ImageBanner image-src="http://olivergiess.com/dynamic/images/full/5bae0d9960327.jpeg" />
+    <ImageBanner :image-src="blog.coverImage" />
 
     <v-container>
       <v-row no-gutters justify="center">
@@ -24,7 +24,7 @@
 
           <v-row>
             <v-col v-for="post in posts" :key="post.id" cols="12" lg="6">
-              <PreviewPost :user="user" :post="post" />
+              <PreviewPost :post="post" />
             </v-col>
           </v-row>
         </v-col>
@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user: 'user/get',
+      blog: 'blog/get',
       pages: 'posts/totalPages'
     }),
     posts () {
@@ -72,26 +72,21 @@ export default {
 
     return validatePositiveInteger(page)
   },
+  middleware: [
+    'processSubdomain'
+  ],
   asyncData ({ route }) {
     return {
       page: Number(route.params.page)
     }
   },
-  async fetch ({ params, store, error }) {
-    const slug = params.slug
-
-    try {
-      await store.dispatch('user/updateBySlug', slug)
-    } catch (e) {
-      error({ statusCode: e.response.status })
-    }
-
+  fetch ({ params, store, error }) {
     const page = params.page
 
     const pages = store.getters['posts/totalPages']
 
     if (page > pages) {
-      error({ statusCode: 404 })
+      return error({ statusCode: 404 })
     }
   }
 }

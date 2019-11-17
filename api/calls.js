@@ -4,12 +4,12 @@ function setupAPI (newclient) {
   client = newclient
 }
 
-function getBlogBySlug (slug) {
-  return client.get(`/users/${slug}?expand=published`)
+function getBlogByURLIdentifier (URLIdentifier) {
+  return client.get(`/blogs/${URLIdentifier}?expand=user,published`)
     .then(res => res.data)
 }
 
 export {
   setupAPI,
-  getBlogBySlug
+  getBlogByURLIdentifier
 }

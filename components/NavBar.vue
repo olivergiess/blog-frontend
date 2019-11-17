@@ -11,7 +11,7 @@
         <v-col cols="12" xl="10" style="height: 100%">
           <v-row no-gutters align="center" justify="center" style="height: 100%">
             <v-col cols="auto">
-              <v-toolbar-title v-text="user.firstName" />
+              <v-toolbar-title v-text="blog.name" />
             </v-col>
 
             <v-spacer />
@@ -36,7 +36,7 @@ import { mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters({
-      user: 'user/get'
+      blog: 'blog/get'
     }),
     items () {
       const items = [
@@ -45,13 +45,6 @@ export default {
           to: '/'
         }
       ]
-
-      if (this.user.slug) {
-        items.push({
-          title: 'Blog',
-          to: `/${this.user.slug}`
-        })
-      }
 
       return items
     }
