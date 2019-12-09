@@ -1,7 +1,7 @@
 {
-  "name": "blog-website",
+  "name": "blog-frontend",
   "version": "1.0.0",
-  "description": "Blog website using olivergiess/cms-backend",
+  "description": "Blog Frontend supported by olivergiess/cms-backend",
   "author": "Oliver Giess",
   "private": true,
   "scripts": {

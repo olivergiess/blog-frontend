@@ -2,16 +2,16 @@
   <v-app>
     <nuxt />
 
-    <Footer />
+    <app-footer />
   </v-app>
 </template>
 
 <script>
-import Footer from '@/components/Footer'
+import AppFooter from '~/components/ui/AppFooter'
 
 export default {
   components: {
-    Footer
+    AppFooter
   }
 }
 </script>

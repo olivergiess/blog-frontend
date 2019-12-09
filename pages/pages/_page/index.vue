@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ImageBanner :image-src="blog.coverImage" />
+    <app-image-banner :image-src="blog.coverImage" />
 
     <v-container>
       <v-row no-gutters justify="center">
@@ -24,7 +24,7 @@
 
           <v-row>
             <v-col v-for="post in posts" :key="post.id" cols="12" lg="6">
-              <PreviewPost :post="post" />
+              <preview-post :post="post" />
             </v-col>
           </v-row>
         </v-col>
@@ -32,7 +32,7 @@
 
       <v-row align="center" justify="center">
         <v-col cols="auto">
-          <Pagination v-model="page" :length="pages" />
+          <app-pagination v-model="page" :length="pages" />
         </v-col>
       </v-row>
     </v-container>
@@ -41,17 +41,17 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { validatePositiveInteger } from '@/helpers/Validation'
+import { validatePositiveInteger } from '~/helpers/Validation'
 
-import ImageBanner from '@/components/ImageBanner'
-import PreviewPost from '@/components/PreviewPost'
-import Pagination from '@/components/Pagination'
+import AppImageBanner from '~/components/ui/AppImageBanner'
+import PreviewPost from '~/components/posts/PreviewPost'
+import AppPagination from '~/components/ui/AppPagination'
 
 export default {
   components: {
-    ImageBanner,
+    AppImageBanner,
     PreviewPost,
-    Pagination
+    AppPagination
   },
   computed: {
     ...mapGetters({

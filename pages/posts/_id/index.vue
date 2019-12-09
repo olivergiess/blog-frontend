@@ -1,8 +1,8 @@
 <template>
   <div>
-    <ImageBanner :image-src="post.coverImage" />
+    <app-image-banner :image-src="post.coverImage" />
 
-    <Avatar />
+    <app-avatar />
 
     <v-container>
       <v-row align="start" justify="center">
@@ -24,7 +24,7 @@
       </v-row>
       <v-row align="start" justify="center">
         <v-col cols="8">
-          <DisplayPost :html="post.body" />
+          <display-post :html="post.body" />
         </v-col>
       </v-row>
     </v-container>
@@ -33,17 +33,17 @@
 
 <script>
 import moment from 'moment'
-import { validatePositiveInteger } from '@/helpers/Validation'
+import { validatePositiveInteger } from '~/helpers/Validation'
 
-import ImageBanner from '@/components/ImageBanner'
-import Avatar from '@/components/Avatar'
-import DisplayPost from '@/components/DisplayPost'
+import AppImageBanner from '~/components/ui/AppImageBanner'
+import AppAvatar from '~/components/ui/AppAvatar'
+import DisplayPost from '~/components/posts/DisplayPost'
 
 export default {
   auth: false,
   components: {
-    ImageBanner,
-    Avatar,
+    AppImageBanner,
+    AppAvatar,
     DisplayPost
   },
   computed: {

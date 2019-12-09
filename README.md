@@ -1,6 +1,6 @@
-# blog-website
+# blog-frontend
 
-> Blog website using olivergiess/cms-backend
+> Blog Frontend supported by olivergiess/cms-backend
 
 ## Build Setup
 

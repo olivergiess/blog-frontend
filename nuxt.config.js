@@ -28,7 +28,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/calls'
+    '~/plugins/calls'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -50,9 +50,10 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    prefix: '/api/',
-    host: 'blog-backend.test',
-    port: 80
+    https: true,
+    host: 'cms.olivergiess.com',
+    port: 443,
+    prefix: '/api/'
   },
   /*
   ** Build configuration

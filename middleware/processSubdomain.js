@@ -1,4 +1,4 @@
-import { getBlogByURLIdentifier } from '@/api/calls'
+import { getBlogByURLIdentifier } from '~/api/calls'
 
 export default async function ({ req, store, error }) {
   if (!process.server) {

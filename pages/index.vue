@@ -1,9 +1,3 @@
-<template>
-  <div>
-    Hello world!
-  </div>
-</template>
-
 <script>
 export default {
   middleware: [
@@ -11,7 +5,7 @@ export default {
   ],
   fetch ({ store, redirect }) {
     if (store.getters['subdomain/exists']) {
-      redirect(`/page/1`)
+      redirect(`/pages/1`)
     }
   }
 }

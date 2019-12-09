@@ -17,10 +17,6 @@
   </v-container>
 </template>
 
-<script>
-export default {}
-</script>
-
 <style scoped>
   .offset {
     margin-top: -93px;
