@@ -5,7 +5,7 @@ const formatPost = ({ id, cover_image: coverImage, title, body, publish_at: publ
   id,
   coverImage,
   title,
-  body,
+  body: JSON.parse(body),
   publishAt,
   updatedAt
 })

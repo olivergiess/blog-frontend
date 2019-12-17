@@ -11,14 +11,11 @@
         </v-row>
         <v-row align="center" justify="center">
           <v-col cols="auto">
-            <v-icon x-large color="grey darken-3">
+            <v-icon x-large color="black">
               mdi-facebook-box
             </v-icon>
-            <v-icon x-large color="grey darken-3">
+            <v-icon x-large color="black">
               mdi-instagram
-            </v-icon>
-            <v-icon x-large color="grey darken-3">
-              mdi-linkedin-box
             </v-icon>
           </v-col>
         </v-row>

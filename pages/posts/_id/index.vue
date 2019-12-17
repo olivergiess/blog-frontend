@@ -6,9 +6,9 @@
 
     <v-container>
       <v-row align="start" justify="center">
-        <v-col cols="6">
+        <v-col cols="12">
           <h1 class="display-3 font-weight-light text-center">
-            Test
+            {{ post.title }}
           </h1>
         </v-col>
       </v-row>
@@ -23,8 +23,8 @@
         </v-col>
       </v-row>
       <v-row align="start" justify="center">
-        <v-col cols="8">
-          <display-post :html="post.body" />
+        <v-col cols="12" xl="8">
+          <display-post :content="post.body" />
         </v-col>
       </v-row>
     </v-container>
@@ -33,7 +33,7 @@
 
 <script>
 import moment from 'moment'
-import { validatePositiveInteger } from '~/helpers/Validation'
+import { validatePositiveInteger } from '~/scripts/Validation'
 
 import AppImageBanner from '~/components/ui/AppImageBanner'
 import AppAvatar from '~/components/ui/AppAvatar'

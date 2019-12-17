@@ -41,7 +41,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { validatePositiveInteger } from '~/helpers/Validation'
+import { validatePositiveInteger } from '~/scripts/Validation'
 
 import AppImageBanner from '~/components/ui/AppImageBanner'
 import PreviewPost from '~/components/posts/PreviewPost'

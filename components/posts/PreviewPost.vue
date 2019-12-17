@@ -1,6 +1,6 @@
 <template>
-  <v-card tile :hover="true" :to="url">
-    <v-card-text>
+  <v-card :hover="true" :to="url">
+    <v-card-text class="px-2 pt-2">
       <v-img :src="post.coverImage" height="25vh">
         <template v-slot:placeholder>
           <v-row class="fill-height ma-0" align="center" justify="center" color="grey">
@@ -21,7 +21,7 @@
     </v-card-subtitle>
 
     <v-card-text>
-      {{ blurb(post.body) }}...
+      Test...
     </v-card-text>
 
     <v-card-actions>
@@ -57,11 +57,6 @@ export default {
     },
     url () {
       return `/posts/${this.post.id}`
-    }
-  },
-  methods: {
-    blurb: (string) => {
-      return string.replace(/^(.{130}[^\s]*).*/, '$1')
     }
   }
 }

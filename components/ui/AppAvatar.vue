@@ -7,13 +7,6 @@
         </v-avatar>
       </v-col>
     </v-row>
-    <v-row align="center" justify="center" no-gutters>
-      <v-col cols="auto">
-        <h3 class="body-2 font-weight-light Itext-uppercase">
-          Test
-        </h3>
-      </v-col>
-    </v-row>
   </v-container>
 </template>
 
